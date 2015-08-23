@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-compatible" content="chrome=1">
+<title>js灯光反射效果</title>
+<style>
+	body { background:url(white_brick_wall.png); font:"Helvetica Neue",Calibri,Helvetica,Arial,sans-serif; color:#666; padding:0; margin:0;}
+	h1 { margin-bottom:0; color:#999;}
+	a { color:#66f; text-decoration:none;}
+	.container { text-align:center; padding:10px 0;}
+	.block{ width:50px; height:50px; margin:20px 30px; display:inline-block;}
+	.big { width:380px; height:100px; line-height:100px; margin-bottom:200px; border-radius:10px;}
+	.c { background:rgba(193,193,193,5)}
+	.cr {background:rgba(255,0,0,.5)}
+	.cg {background:rgba(0,200,0,.5)}
+	.cb {background:rgba(0,0,255,.5)}
+	.crg{background:rgba(255,255,0,.5)}
+	.cgb{background:rgba(0,200,255,.5)}
+	.cbr{background:rgba(255,0,255,.5)}
+	.crgb{background:rgba(255,255,255,.5)}
+	
+	.round { border-radius:10px;}
+	.circle {border-radius:30px}
+	.ur {border-radius:5px 50px 5px 5px}
+	.ll {border-radius:5px 5px 5px 50px}
+	
+	
+</style>
+</head>
+
+<body>
+	<div class="container">
+    	<div class="demo">
+        </div>
+    </div>
+    
+    
+    <script type="text/javascript" src="realshadow.js"></script>
+    <script>
+    	(function() {
+			var a = ['rect', 'circle', 'round', 'ur', 'll'],
+			    c = ['', 'r', 'g', 'b', 'rgb', 'rg', 'gb', 'br'],
+				columns =6, rows = 6,
+				s = '', i, j;
+			
+			for(i = 0; i<columns; ++i) {
+				s += '<p>';
+				for(j = 0; j<rows; ++j) {
+					s += '<span rel="' + c[(i * columns + j) % c.length] + '" class="realshadow block ' +a[(i * columns + j) % a.length] + ' c' + c[(i * columns + j) % c.length] + '"></span>';
+				}
+				
+				s += '</p>';
+			}
+			
+				
+				
+				/*s = '<p><span rel="' + c[(1 * columns + 0) % c.length] + '" class="realshadow block ' +a[(1 * columns + 0) % a.length] + ' c' + c[(1 * columns + 0) % c.length] + '"></span></p>';*/
+				
+				
+				
+				
+			
+			
+			document.getElementsByClassName('demo')[0].innerHTML = '<div class="wrapper">' + s + '</div>' +
+			                                                       '<div class="inset block big" style="cursor:pointer">Inset shadows are supported as well</div>';
+			realshadow(document.getElementsByClassName('realshadow'));
+			realshadow(document.getElementsByClassName('inset'), {inset:true});
+		})();
+    </script>
+    
+</body>
+</html>
